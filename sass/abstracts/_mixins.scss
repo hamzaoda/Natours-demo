@@ -1,0 +1,56 @@
+@mixin clearfix {
+    &::after{
+        content: "";
+        display:table;
+        clear: both;
+    }
+    
+}
+
+
+@mixin center-vertical {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+//MEDIA QUERY MANGER
+/*
+0 - 600PX Phone
+600- 900PX Tablet -partrait
+900-1200px Tablet-landscape
+[1200 - 1800] IS where normal styles apply
+1800px + : Big Desktop
+*/
+
+
+/*
+$brackpoint agrument :
+-phone
+-tab-port
+-tab-land
+-big-desktop
+
+1em = 16px
+*/
+
+@mixin respond($brackpoint) {
+    @if $brackpoint == phone {
+        @media only screen and ( max-width : 37.5em){ @content }; //600px
+    }
+
+    @if $brackpoint == tab-port {
+        @media only screen and   ( max-width : 56.25em){ @content }; //900px
+    }
+
+    @if $brackpoint == tab-land {
+        @media only screen and  ( max-width : 75em){ @content }; //1200px
+    }
+
+    @if $brackpoint == big-desktop {
+        @media only screen and  ( min-width : 122.5em){ @content }; //1800px
+    }
+
+}
